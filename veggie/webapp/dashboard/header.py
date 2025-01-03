@@ -1,8 +1,11 @@
 """
 Header component of the dashboard.
 """
+
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
+
+from veggie.webapp.dashboard import config
 
 header_contents = dmc.Grid(
     align="center",
@@ -19,7 +22,7 @@ header_contents = dmc.Grid(
                                 dmc.Text("Celery Admin", size="xl", fw=700),
                             ]
                         ),
-                        href="/app/",
+                        href=config.APP_BASE_PATH,
                         refresh=False,
                         underline=False,
                         style={"text-decoration": "none", "color": "inherit"},
