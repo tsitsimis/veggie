@@ -58,6 +58,8 @@ Start a new task by entering values for its parameters through the UI:
     <img src="assets/start-task.png" width="100%"/>
 </p>
 
+See the `example` folder for a full example.
+
 ## REST API
 Access the API at `http://localhost:5000/api/`
 
