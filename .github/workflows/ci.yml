@@ -28,4 +28,4 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Run tests
-        run: pytest --maxfail=3 --disable-warnings
+        run: PYTHONPATH=. pytest --maxfail=3 --disable-warnings
