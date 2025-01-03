@@ -47,20 +47,7 @@ header_contents = dmc.Grid(
                             radius="xl",
                         ),
                         dmc.Menu(
-                            [
-                                dmc.MenuTarget(dmc.Anchor(children=dmc.Avatar(radius="xl"), href="#")),
-                                dmc.MenuDropdown(
-                                    [
-                                        dmc.MenuLabel("Profile"),
-                                        dmc.MenuItem("Settings", leftSection=DashIconify(icon="tabler:settings")),
-                                        dmc.MenuDivider(),
-                                        dmc.MenuItem(
-                                            dmc.Anchor("Logout", href="/logout", refresh=True, underline="never"),
-                                            leftSection=DashIconify(icon="clarity:logout-line"),
-                                        ),
-                                    ]
-                                ),
-                            ],
+                            [dmc.MenuTarget(dmc.Anchor(children=dmc.Avatar(radius="xl"), href="#"))],
                             position="bottom-end",
                         ),
                     ]
