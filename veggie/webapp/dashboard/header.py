@@ -17,10 +17,7 @@ header_contents = dmc.Grid(
                     dmc.Burger(id="burger", opened=False, hiddenFrom="sm", size="md"),
                     dmc.Anchor(
                         dmc.Group(
-                            [
-                                DashIconify(icon="tdesign:broccoli", height=30),
-                                dmc.Text("Celery Admin", size="xl", fw=700),
-                            ]
+                            [DashIconify(icon="tdesign:broccoli", height=30), dmc.Text("Veggie", size="xl", fw=700)]
                         ),
                         href=config.APP_BASE_PATH,
                         refresh=False,
