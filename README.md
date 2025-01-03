@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/tdesign--broccoli.svg" alt="logo" width=200 style="background: white; border-radius: 50%"/>
+    <img src="assets/logo-big.svg" alt="logo" width=200 style="background: white; border-radius: 50%"/>
     <div align="center" style="font-size: 1.5em">Veggie - Celery monitoring and execution</div>
 </p>
 <p align="center">
