@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/logo-big.svg" alt="logo" width=200 style="background: white; border-radius: 50%"/>
+    <img src="https://raw.githubusercontent.com/tsitsimis/veggie/refs/heads/main/assets/logo-big.svg" alt="logo" width=200 style="background: white; border-radius: 50%"/>
     <div align="center" style="font-size: 1.5em">Veggie - Celery monitoring and execution</div>
 </p>
 <p align="center">
@@ -44,18 +44,18 @@ Open your browser at `http://localhost:5000`:
 
 Check the status of past and running tasks:
 <p align="center">
-    <img src="assets/status.png" width="100%"/>
+    <img src="https://raw.githubusercontent.com/tsitsimis/veggie/refs/heads/main/assets/status.png" width="100%"/>
 </p>
 
 Select a task to view its details:
 <p align="center">
-    <img src="assets/event-details.png" width="100%"/>
+    <img src="https://raw.githubusercontent.com/tsitsimis/veggie/refs/heads/main/assets/event-details.png" width="100%"/>
 </p>
 
 
 Start a new task by entering values for its parameters through the UI:
 <p align="center">
-    <img src="assets/start-task.png" width="100%"/>
+    <img src="https://raw.githubusercontent.com/tsitsimis/veggie/refs/heads/main/assets/start-task.png" width="100%"/>
 </p>
 
 See the `example` folder for a full example.
