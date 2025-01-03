@@ -6,7 +6,7 @@ from typing import Any, Callable, get_type_hints
 from celery import Celery
 from flask import Blueprint, Response, jsonify, request
 
-from veggie.storage import Storage
+from ..storage import Storage
 
 
 def function_params_to_json(func: Callable) -> list[dict]:

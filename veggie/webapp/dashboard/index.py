@@ -4,12 +4,12 @@ Dash app
 import dash_mantine_components as dmc
 from dash_extensions.enrich import DashProxy, Input, Output, State, dash, dcc, page_container
 
-from veggie.webapp.dashboard import config, style
-from veggie.webapp.dashboard.header import header_contents
-from veggie.webapp.dashboard.navbar import navbar_contents
-from veggie.webapp.dashboard.pages.not_found_404 import blueprint as not_found_blueprint
-from veggie.webapp.dashboard.pages.status import blueprint as status_blueprint
-from veggie.webapp.dashboard.pages.tasks import blueprint as tasks_blueprint
+from ...webapp.dashboard import config, style
+from ...webapp.dashboard.header import header_contents
+from ...webapp.dashboard.navbar import navbar_contents
+from ...webapp.dashboard.pages.not_found_404 import blueprint as not_found_blueprint
+from ...webapp.dashboard.pages.status import blueprint as status_blueprint
+from ...webapp.dashboard.pages.tasks import blueprint as tasks_blueprint
 
 dash._dash_renderer._set_react_version("18.2.0")
 

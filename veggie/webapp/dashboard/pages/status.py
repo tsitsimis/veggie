@@ -9,7 +9,7 @@ import requests  # type: ignore
 from dash_extensions.enrich import ALL, DashBlueprint, Input, Output, ctx, exceptions
 from dash_iconify import DashIconify
 
-from veggie.webapp.dashboard import style
+from ....webapp.dashboard import style
 
 PORT = os.getenv("VEGGIE_PORT", 5000)
 

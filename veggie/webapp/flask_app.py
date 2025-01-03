@@ -8,9 +8,9 @@ from celery import Celery
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from veggie.storage import Storage
-from veggie.webapp.api import create_api_blueprint
-from veggie.webapp.dashboard.index import app as dash_app
+from ..storage import Storage
+from ..webapp.api import create_api_blueprint
+from ..webapp.dashboard.index import app as dash_app
 
 
 def get_flask_app(storage: Storage, celery_app: Celery) -> Any:

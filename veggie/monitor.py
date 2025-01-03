@@ -9,8 +9,8 @@ from celery.events import EventReceiver
 from kombu import Connection
 from loguru import logger
 
-from veggie.storage import Storage
-from veggie.webapp.flask_app import get_flask_app
+from .storage import Storage
+from .webapp.flask_app import get_flask_app
 
 
 class CeleryMonitor:
