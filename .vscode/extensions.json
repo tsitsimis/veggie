@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "mhutchie.git-graph",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.datawrangler",
+        "GitHub.vscode-pull-request-github",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
+        "pomdtr.excalidraw-editor",
+        "tomoki1207.pdf"
+    ]
+}

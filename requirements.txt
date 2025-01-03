@@ -1,0 +1,7 @@
+dash>=2.5.1
+dash-extensions>=1.0.19
+dash-mantine-components>=0.15.1
+dash-iconify
+loguru
+celery[redis]
+humanize

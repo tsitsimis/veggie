@@ -1,0 +1,41 @@
+services:
+  redis:
+    image: redis:latest
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A example.tasks worker --loglevel=info
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./example
+          target: /example
+    depends_on:
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+  veggie_ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python example/monitor_tasks.py
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./veggie
+          target: /veggie
+        - action: sync+restart
+          path: ./example
+          target: /example
+    depends_on:
+      - celery_worker
+    ports:
+      - 5000:5000
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - VEGGIE_PORT=5000

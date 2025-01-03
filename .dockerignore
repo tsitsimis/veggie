@@ -1,0 +1,15 @@
+.env
+__pycache__
+.git
+.github
+venv/
+notebooks/
+tests/
+.flask_session/
+.ruff_cache/
+.vscode/
+.mypy_cache/
+db/
+.secrets/
+dagster/
+chromadb/

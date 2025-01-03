@@ -1,0 +1,30 @@
+repos:
+    -   repo: https://github.com/pre-commit/pre-commit-hooks
+        rev: v4.4.0
+        hooks:
+        -   id: detect-private-key
+        -   id: check-added-large-files
+        -   id: check-toml
+        -   id: check-yaml
+            args:
+            -   --unsafe
+        -   id: trailing-whitespace
+    -   repo: https://github.com/zricethezav/gitleaks
+        rev: v8.18.0
+        hooks:
+        -   id: gitleaks
+            name: detect hardcoded secrets using Gitleaks.
+    - repo: https://github.com/astral-sh/ruff-pre-commit
+      rev: v0.1.3
+      hooks:
+          - id: ruff
+            name: run ruff (Python linter)
+            args: [--fix]
+          - id: ruff-format
+            name: run ruff-format (Python formatter)
+    - repo: https://github.com/pre-commit/mirrors-mypy
+      rev: v1.6.1
+      hooks:
+          - id: mypy
+            name: run mypy (Python type checker)
+            args: ["--config-file=pyproject.toml"]

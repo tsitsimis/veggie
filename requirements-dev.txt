@@ -1,0 +1,8 @@
+pytest==8.3.4
+pre-commit==3.3.3
+mypy==1.5.1
+coverage==7.3.2
+pytest-cov==4.1.0
+pytest-asyncio==0.25.1
+diff_cover==8.0.3
+ruff==0.2.2

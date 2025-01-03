@@ -1,0 +1,184 @@
+[tool.ruff]
+# Allow lines to be as long as 120.
+line-length = 120
+# Exclude the following directories from linting.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    ".venv",
+    "*/__init__.py",
+]
+src = ["src"]
+
+
+[tool.ruff.lint]
+# Enable the following linters.
+select = [
+    "B",   # flake8-bugbear
+    "C",   # flake8-comprehensions
+    "D",   # pydocstyle
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "W",   # pycodestyle warnings
+    "SIM", # flake8-simplify
+    "RSE", # flake8-raise
+    #"PD" uncomment this to enable pandas-vet linter
+    #"PERF" uncomment this to enable Perflint linter
+    #"FURB" uncomment this to enable refurb linter
+]
+
+# Disable the following linters.
+ignore = [
+    "D200",  # One-line docstring should fit on one line
+    "D211",
+    "D212",
+    "D400",
+    "D401",
+    "D415",  # First line should end with a period, question mark, or exclamation point
+    "W191",  # the following rules come from here: https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "E111",
+    "E114",
+    "E117",
+    "D206",
+    "D300",
+    "Q000",
+    "Q001",
+    "Q002",
+    "Q003",
+    "COM812",
+    "COM819",
+    "ISC001",
+    "ISC002",
+]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Unlike Black, do not respect magic trailing commas.
+skip-magic-trailing-comma = true
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+# Do not split imports into multiple lines when there is a trailing comma.
+split-on-trailing-comma = false
+
+
+[tool.ruff.lint.per-file-ignores]
+# A list of mappings from file pattern to rule codes or prefixes to exclude, when considering any matching files.
+"__init__.py" = [
+    "E402",
+] #  Ignore `E402` (import violations) in all `__init__.py` files
+"tests/*" = ["D"] # Ignore pydocstyle errors in all tests
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+
+[tool.coverage.run]
+branch = true
+relative_files = true
+source = ["src"]
+omit = [
+    "**/__init__.py",
+    "veggie/webapp/*"
+]
+parallel = true
+
+[tool.coverage.report]
+# See more details here https://coverage.readthedocs.io/en/latest/config.html
+# Regexes for lines to exclude from consideration
+exclude_also = [
+    # Don't complain about missing debug-only code:
+    "def __repr__",
+    "if self\\.debug",
+
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Don't complain if non-runnable code isn't run:
+    "if 0:",
+    "if __name__ == .__main__.:",
+
+    # Don't complain about abstract methods, they aren't run:
+    "@(abc\\.)?abstractmethod",
+
+    "@(typing(_extensions)?\\.)?overload",
+    "if (typing(_extensions)?\\.)?TYPE_CHECKING:",
+]
+
+ignore_errors = true
+include_namespace_packages = true
+
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "session"
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "veggie"
+version = "0.1.0"
+description = "A dead-simple Celery monitor and admin dashboard"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+  {name = "Theodore Tsitsimis", email = "th.tsitsimis@gmail.com"}
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License"
+]
+dependencies = [
+  "dash>=2.5.1",
+  "dash-extensions>=1.0.19",
+  "dash-mantine-components>=0.15.1",
+  "dash-iconify",
+  "loguru",
+  "celery[redis]",
+  "humanize",
+]
+
+[tool.setuptools]
+packages = ["veggie"]
