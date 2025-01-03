@@ -6,3 +6,5 @@ pytest-cov==4.1.0
 pytest-asyncio==0.25.1
 diff_cover==8.0.3
 ruff==0.2.2
+build
+twine

@@ -6,7 +6,7 @@ from typing import Any, Tuple
 import dash_mantine_components as dmc
 import humanize
 import requests  # type: ignore
-from dash_extensions.enrich import ALL, DashBlueprint, Input, Output, ctx
+from dash_extensions.enrich import ALL, DashBlueprint, Input, Output, ctx, exceptions
 from dash_iconify import DashIconify
 
 from veggie.webapp.dashboard import style
@@ -194,8 +194,8 @@ def get_event_details_card(event: dict) -> Any:
     )
 
 
-def layout() -> Any:
-    """Creates layout for status page"""
+def get_table_rows() -> list[Any]:
+    """Retrieves events and creates table body"""
     response = requests.get(f"http://localhost:{PORT}/api/events")
     events = response.json()
 
@@ -211,7 +211,7 @@ def layout() -> Any:
                         DashIconify(icon="mingcute:more-2-line", width=20),
                         size="md",
                         variant="transparent",
-                        id={"type": "event", "uuid": event["uuid"]},
+                        id={"type": "event-details-button", "uuid": event["uuid"]},
                     )
                 ),
                 dmc.TableTd(event["name"]),
@@ -226,19 +226,41 @@ def layout() -> Any:
         )
         rows.append(row)
 
+    return rows
+
+
+def layout() -> Any:
+    """Creates layout for status page"""
     return dmc.Container(
         children=[
-            dmc.Table(
-                id="task-status-table",
-                withColumnBorders=False,
-                withTableBorder=True,
+            dmc.Stack(
+                align="flex-start",
+                gap="md",
+                mt="md",
                 children=[
-                    dmc.TableThead(
-                        dmc.TableTr(
-                            [dmc.TableTh(""), dmc.TableTh("Task"), dmc.TableTh("Status"), dmc.TableTh("Received")]
-                        )
+                    dmc.Button(
+                        id="status-update-button",
+                        children="Refresh",
+                        leftSection=DashIconify(icon="material-symbols:refresh", width=20),
                     ),
-                    dmc.TableTbody(rows),
+                    dmc.Table(
+                        id="task-status-table",
+                        withColumnBorders=False,
+                        withTableBorder=True,
+                        children=[
+                            dmc.TableThead(
+                                dmc.TableTr(
+                                    [
+                                        dmc.TableTh(""),
+                                        dmc.TableTh("Task"),
+                                        dmc.TableTh("Status"),
+                                        dmc.TableTh("Received"),
+                                    ]
+                                )
+                            ),
+                            dmc.TableTbody(id="task-status-table-body", children=get_table_rows()),
+                        ],
+                    ),
                 ],
             ),
             dmc.Drawer(id="event-details-drawer", position="right", size="60%", opened=False),
@@ -251,13 +273,24 @@ blueprint.layout = layout
 
 
 @blueprint.callback(
+    Output("task-status-table-body", "children"), Input("status-update-button", "n_clicks"), prevent_initial_call=True
+)
+def update_table(n_clicks: int) -> list[Any]:
+    """Updates status table"""
+    return get_table_rows()
+
+
+@blueprint.callback(
     Output("event-details-drawer", "opened"),
     Output("event-details-drawer", "children"),
-    Input({"type": "event", "uuid": ALL}, "n_clicks"),
+    Input({"type": "event-details-button", "uuid": ALL}, "n_clicks"),
     prevent_initial_call=True,
 )
-def open_event_details(n_clicks: int) -> Tuple[bool, Any]:
+def open_event_details(n_clicks: list[int | None]) -> Tuple[bool, Any]:
     """Opens event details drawer."""
+    if all(item is None for item in n_clicks):
+        raise exceptions.PreventUpdate
+
     triggered_id = ctx.triggered_id
     task_id = triggered_id["uuid"]
 
