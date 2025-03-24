@@ -221,6 +221,8 @@ def get_table_rows() -> list[Any]:
                         datetime.datetime.now(tz=datetime.timezone.utc)
                         - datetime.datetime.fromtimestamp(event["received_timestamp"], tz=datetime.timezone.utc)
                     )
+                    if event.get("received_timestamp")
+                    else "N/A"
                 ),
             ]
         )
